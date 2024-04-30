@@ -1,0 +1,9 @@
+{
+	"name": "rhugved-DataFactory",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "aa0d51ff-c50e-46ff-8fa1-1ec33f454d99",
+		"tenantId": "615e68cd-55f5-468a-8ff1-dd68b0afc4b5"
+	}
+}
