@@ -102,7 +102,15 @@
 				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ProductID,",
+				"          CustomerID,",
+				"          OrderQty,",
+				"          UnitPrice,",
+				"          OrderDate,",
+				"          TaxAmt",
+				"     )) ~> sink1"
 			]
 		}
 	}
