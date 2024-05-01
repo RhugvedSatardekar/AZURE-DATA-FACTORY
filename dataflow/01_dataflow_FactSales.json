@@ -105,6 +105,7 @@
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          ProductID,",
+				"          SalesOrderID = source1@SalesOrderID,",
 				"          CustomerID,",
 				"          OrderQty,",
 				"          UnitPrice,",
