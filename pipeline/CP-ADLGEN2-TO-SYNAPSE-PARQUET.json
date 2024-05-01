@@ -243,7 +243,8 @@
 						"linkedServiceName": {
 							"referenceName": "AzureDataLakeStorage1",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"path": "staging"
 					},
 					"translator": {
 						"type": "TabularTranslator",
