@@ -61,14 +61,7 @@
 			{
 				"name": "Copy to D-SQL-POOL",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "COPY TO PARQUET CONTAINER",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
