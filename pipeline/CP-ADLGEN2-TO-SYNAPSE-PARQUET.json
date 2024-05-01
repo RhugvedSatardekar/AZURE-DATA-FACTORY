@@ -91,9 +91,18 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -103,7 +112,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "la",
+						"referenceName": "lagdata_parquet_DSQL_POOL",
 						"type": "DatasetReference"
 					}
 				]
