@@ -69,7 +69,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
-				"source1, source2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"source1, source2 join(source1@SalesOrderID == source2@SalesOrderID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
