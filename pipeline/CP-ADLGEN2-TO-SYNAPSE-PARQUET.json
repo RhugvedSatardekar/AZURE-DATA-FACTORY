@@ -5,6 +5,8 @@
 			{
 				"name": "COPY TO PARQUET CONTAINER",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -61,14 +63,7 @@
 			{
 				"name": "Copy to D-SQL-POOL",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "COPY TO PARQUET CONTAINER",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
