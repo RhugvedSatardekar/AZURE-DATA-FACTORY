@@ -89,11 +89,21 @@
 							"type": "ParquetReadSettings"
 						}
 					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "logdata_parquet",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "la",
 						"type": "DatasetReference"
 					}
 				]
