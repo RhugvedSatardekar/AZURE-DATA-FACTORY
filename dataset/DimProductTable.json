@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable3",
+	"name": "DimProductTable",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics1",

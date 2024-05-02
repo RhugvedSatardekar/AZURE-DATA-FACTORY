@@ -43,7 +43,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSynapseAnalyticsTable3",
+						"referenceName": "DimProductTable",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
