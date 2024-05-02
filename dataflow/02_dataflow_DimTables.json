@@ -87,6 +87,9 @@
 				},
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "exists1"
 				}
 			],
 			"scriptLines": [
@@ -177,7 +180,7 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table',",
 				"     staged: true) ~> source6",
-				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
+				"exists1, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -211,6 +214,9 @@
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey2",
 				"surrogateKey2 derive(CustomerSK = CustomerSK+ sink3#outputs()[1].CustomerSK) ~> derivedColumn1",
+				"source2, source6 exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
