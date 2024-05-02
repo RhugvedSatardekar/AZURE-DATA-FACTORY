@@ -14,17 +14,16 @@
 				"fileSystem": "ngnix"
 			},
 			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "127.0.0.1 - - [02/May/2024:18:20:17 +0000] \"GET / HTTP/1.1\" 200 615 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML",
 				"type": "String"
 			},
 			{
-				"name": " like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0\"",
 				"type": "String"
 			}
 		]
