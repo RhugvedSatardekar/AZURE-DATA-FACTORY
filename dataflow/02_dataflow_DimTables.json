@@ -42,6 +42,10 @@
 					"name": "sink1"
 				},
 				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable3",
+						"type": "DatasetReference"
+					},
 					"name": "sink2"
 				}
 			],
@@ -153,8 +157,24 @@
 				"     )) ~> sink1",
 				"join2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          ProductID as integer,",
+				"          ProductModelID as integer,",
+				"          ProductcategoryID as integer,",
+				"          ProductName as string,",
+				"          ProductModelName as string,",
+				"          ProductCategoryName as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}
