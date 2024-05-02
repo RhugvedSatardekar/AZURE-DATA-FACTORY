@@ -1,5 +1,5 @@
 {
-	"name": "02_dataflow_DimCustomer",
+	"name": "02_dataflow_DimTables",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -10,6 +10,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -44,6 +47,8 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source1",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source2",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
