@@ -23,7 +23,8 @@
 			],
 			"transformations": [
 				{
-					"name": "flatten1"
+					"name": "flatten1",
+					"description": "Flatter JSON array"
 				}
 			],
 			"scriptLines": [
@@ -37,7 +38,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> source1",
-				"source1 foldDown(unroll(),",
+				"source1 foldDown(unroll(courses, courses),",
 				"     mapColumn(",
 				"          customerid,",
 				"          customername,",
@@ -67,7 +68,8 @@
 				"     mapColumn(",
 				"          CustomerID = customerid,",
 				"          CustomerName = customername,",
-				"          Registered = registered",
+				"          Registered = registered,",
+				"          Courses = courses",
 				"     )) ~> sink1"
 			]
 		}
