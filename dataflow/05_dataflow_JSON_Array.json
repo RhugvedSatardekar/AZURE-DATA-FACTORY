@@ -41,7 +41,10 @@
 				"     documentForm: 'arrayOfDocuments') ~> source1",
 				"source1 foldDown(unroll(courses, courses),",
 				"     mapColumn(",
-				"          courses = courses",
+				"          courses = courses,",
+				"          CustomerID = customerid,",
+				"          Registered = registered,",
+				"          Mobile = details.mobile",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> flatten1",
@@ -68,7 +71,7 @@
 				"     mapColumn(",
 				"          CustomerID = customerid,",
 				"          CustomerName = customername,",
-				"          Registered = registered,",
+				"          Registered,",
 				"          Courses = courses",
 				"     )) ~> sink1"
 			]
