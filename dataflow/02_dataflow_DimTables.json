@@ -54,6 +54,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
+				},
+				{
+					"name": "sink3"
 				}
 			],
 			"transformations": [
@@ -248,7 +251,11 @@
 				"          ProductName = Name,",
 				"          ProductModelName,",
 				"          ProductCategoryName",
-				"     )) ~> sink2"
+				"     )) ~> sink2",
+				"source5 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3"
 			]
 		}
 	}
