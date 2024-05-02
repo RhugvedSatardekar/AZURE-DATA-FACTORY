@@ -809,8 +809,10 @@
 									"source2": {},
 									"source3": {},
 									"source4": {},
+									"source5": {},
 									"sink1": {},
-									"sink2": {}
+									"sink2": {},
+									"sink3": {}
 								}
 							},
 							"staging": {
@@ -2149,6 +2151,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "source4"
+						},
+						{
+							"dataset": {
+								"referenceName": "DataFlowDimCustomer",
+								"type": "DatasetReference"
+							},
+							"name": "source5"
 						}
 					],
 					"sinks": [
@@ -2165,6 +2174,9 @@
 								"type": "DatasetReference"
 							},
 							"name": "sink2"
+						},
+						{
+							"name": "sink3"
 						}
 					],
 					"transformations": [
@@ -2185,6 +2197,9 @@
 						},
 						{
 							"name": "surrogateKey2"
+						},
+						{
+							"name": "derivedColumn1"
 						}
 					],
 					"scriptLines": [
@@ -2252,6 +2267,15 @@
 						"     validateSchema: false,",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     format: 'table') ~> source4",
+						"source(output(",
+						"          CustomerSK as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     query: 'SELECT MAX(CustomerSK) as CustomerSK FROM [dbo].[DimCustomer]',",
+						"     format: 'query',",
+						"     staged: true) ~> source5",
 						"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 						"     joinType:'left',",
 						"     matchType:'exact',",
@@ -2285,7 +2309,8 @@
 						"select2 keyGenerate(output(CustomerSK as long),",
 						"     startAt: 1L,",
 						"     stepValue: 1L) ~> surrogateKey2",
-						"surrogateKey2 sink(allowSchemaDrift: true,",
+						"surrogateKey2 derive(CustomerSK = CustomerSK+ sink3#outputs()[1].CustomerSK) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
 						"          CustomerSK as integer,",
@@ -2337,7 +2362,17 @@
 						"          ProductName = Name,",
 						"          ProductModelName,",
 						"          ProductCategoryName",
-						"     )) ~> sink2"
+						"     )) ~> sink2",
+						"source5 sink(validateSchema: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     store: 'cache',",
+						"     format: 'inline',",
+						"     output: false,",
+						"     saveOrder: 1,",
+						"     mapColumn(",
+						"          CustomerSK",
+						"     )) ~> sink3"
 					]
 				}
 			},
@@ -2364,7 +2399,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Customer01.csv",
+						"fileName": "Customer02.csv",
 						"folderPath": "Customer",
 						"fileSystem": "csv"
 					},
