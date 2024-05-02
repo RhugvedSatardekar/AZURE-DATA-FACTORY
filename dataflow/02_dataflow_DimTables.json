@@ -190,11 +190,11 @@
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          ProductID,",
-				"          ProductModelID = {source3@ProductModelID},",
-				"          ProductcategoryID = {source4@ProductCategoryID},",
+				"          ProductModelID,",
+				"          ProductcategoryID = ProductCategoryID,",
 				"          ProductName = Name,",
-				"          ProductModelName = {source3@Name},",
-				"          ProductCategoryName = {source4@Name}",
+				"          ProductModelName,",
+				"          ProductCategoryName",
 				"     )) ~> sink2"
 			]
 		}
