@@ -252,10 +252,13 @@
 				"          ProductModelName,",
 				"          ProductCategoryName",
 				"     )) ~> sink2",
-				"source5 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"source5 sink(validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink3"
+				"     skipDuplicateMapOutputs: true,",
+				"     store: 'cache',",
+				"     format: 'inline',",
+				"     output: false,",
+				"     saveOrder: 1) ~> sink3"
 			]
 		}
 	}
