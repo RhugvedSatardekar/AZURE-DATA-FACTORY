@@ -38,6 +38,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "source5"
+				},
+				{
+					"dataset": {
+						"referenceName": "DimProductTable",
+						"type": "DatasetReference"
+					},
+					"name": "source6"
 				}
 			],
 			"sinks": [
@@ -156,6 +163,20 @@
 				"     query: 'SELECT MAX(CustomerSK) as CustomerSK FROM [dbo].[DimCustomer]',",
 				"     format: 'query',",
 				"     staged: true) ~> source5",
+				"source(output(",
+				"          ProductSK as integer,",
+				"          ProductID as integer,",
+				"          ProductModelID as integer,",
+				"          ProductcategoryID as integer,",
+				"          ProductName as string,",
+				"          ProductModelName as string,",
+				"          ProductCategoryName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> source6",
 				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
