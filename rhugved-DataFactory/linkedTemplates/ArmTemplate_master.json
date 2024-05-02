@@ -19,9 +19,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
 		},
+		"rhugved_vm_server_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'rhugved_vm_server'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://rhugvedadlgen2.dfs.core.windows.net/"
+		},
+		"rhugved_vm_server_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "D:\\nginx-1.26.0\\logs"
+		},
+		"rhugved_vm_server_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "rhugved"
 		},
 		"containerUri": {
 			"type": "string",
@@ -79,11 +91,40 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"rhugved_vm_server_password": {
+						"value": "[parameters('rhugved_vm_server_password')]"
+					},
+					"rhugved_vm_server_properties_typeProperties_host": {
+						"value": "[parameters('rhugved_vm_server_properties_typeProperties_host')]"
+					},
+					"rhugved_vm_server_properties_typeProperties_userId": {
+						"value": "[parameters('rhugved_vm_server_properties_typeProperties_userId')]"
 					}
 				}
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'rhugved-DataFactory_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "rhugved-DataFactory_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'rhugved-DataFactory_ArmTemplate_1')]"
 			]
 		}
 	]

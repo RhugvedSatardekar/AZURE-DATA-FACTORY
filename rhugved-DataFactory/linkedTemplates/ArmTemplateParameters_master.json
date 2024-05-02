@@ -14,8 +14,17 @@
 		"AzureSynapseAnalytics1_connectionString": {
 			"value": ""
 		},
+		"rhugved_vm_server_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://rhugvedadlgen2.dfs.core.windows.net/"
+		},
+		"rhugved_vm_server_properties_typeProperties_host": {
+			"value": "D:\\nginx-1.26.0\\logs"
+		},
+		"rhugved_vm_server_properties_typeProperties_userId": {
+			"value": "rhugved"
 		},
 		"containerUri": {
 			"value": ""
