@@ -245,7 +245,10 @@
 				"     store: 'cache',",
 				"     format: 'inline',",
 				"     output: false,",
-				"     saveOrder: 1) ~> sink3"
+				"     saveOrder: 1,",
+				"     mapColumn(",
+				"          CustomerSK",
+				"     )) ~> sink3"
 			]
 		}
 	}
