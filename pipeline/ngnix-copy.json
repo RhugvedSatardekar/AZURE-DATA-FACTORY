@@ -15,8 +15,20 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"outputs": [
+					{
+						"referenceName": "AccessFile",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
