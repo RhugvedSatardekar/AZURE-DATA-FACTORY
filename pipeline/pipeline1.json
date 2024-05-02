@@ -23,7 +23,8 @@
 						"linkedService": {
 							"referenceName": "AzureDataLakeStorage1",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"folderPath": "staging"
 					},
 					"compute": {
 						"coreCount": 8,
