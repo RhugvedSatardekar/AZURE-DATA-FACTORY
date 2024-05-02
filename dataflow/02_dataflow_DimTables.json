@@ -114,7 +114,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source4",
-				"source2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
