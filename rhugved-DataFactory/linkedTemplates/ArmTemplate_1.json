@@ -583,6 +583,13 @@
 						},
 						{
 							"name": "surrogateKey1"
+						},
+						{
+							"name": "select2"
+						},
+						{
+							"name": "surrogateKey2",
+							"description": "Specify colu"
 						}
 					],
 					"scriptLines": [
@@ -675,9 +682,20 @@
 						"select1 keyGenerate(output(ProductSK as long),",
 						"     startAt: 1L,",
 						"     stepValue: 1L) ~> surrogateKey1",
-						"source1 sink(allowSchemaDrift: true,",
+						"source1 select(mapColumn(",
+						"          CustomerID,",
+						"          CompanyName,",
+						"          SalesPerson",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select2",
+						"select2 keyGenerate(output(CustomerSK as long),",
+						"     startAt: 1L,",
+						"     stepValue: 1L) ~> surrogateKey2",
+						"surrogateKey2 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
+						"          CustomerSK as integer,",
 						"          CustomerID as integer,",
 						"          CompanyName as string,",
 						"          SalesPerson as string",
@@ -692,6 +710,7 @@
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
+						"          CustomerSK,",
 						"          CustomerID,",
 						"          CompanyName,",
 						"          SalesPerson",
