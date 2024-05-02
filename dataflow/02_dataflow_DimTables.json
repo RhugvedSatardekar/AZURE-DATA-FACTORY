@@ -34,7 +34,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "DimCustomer1Table",
+						"referenceName": "CustomerCSV",
 						"type": "DatasetReference"
 					},
 					"name": "source5"
@@ -145,8 +145,8 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source4",
 				"source(output(",
-				"          CustomerID as integer,",
-				"          NameStyle as boolean,",
+				"          CustomerID as string,",
+				"          NameStyle as string,",
 				"          Title as string,",
 				"          FirstName as string,",
 				"          MiddleName as string,",
@@ -158,14 +158,11 @@
 				"          Phone as string,",
 				"          PasswordHash as string,",
 				"          PasswordSalt as string,",
-				"          rowguid as string,",
-				"          ModifiedDate as timestamp",
+				"          rowguid as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     query: 'SELECT MAX(CustomerSK) as CustomerSK FROM [dbo].[DimCustomer]',",
-				"     format: 'query') ~> source5",
+				"     ignoreNoFilesFound: false) ~> source5",
 				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
