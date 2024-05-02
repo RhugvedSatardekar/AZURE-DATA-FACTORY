@@ -33,6 +33,10 @@
 					"name": "source4"
 				},
 				{
+					"dataset": {
+						"referenceName": "DimCustomer1Table",
+						"type": "DatasetReference"
+					},
 					"name": "source5"
 				}
 			],
@@ -137,8 +141,27 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source4",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source5",
+				"source(output(",
+				"          CustomerID as integer,",
+				"          NameStyle as boolean,",
+				"          Title as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          Suffix as string,",
+				"          CompanyName as string,",
+				"          SalesPerson as string,",
+				"          EmailAddress as string,",
+				"          Phone as string,",
+				"          PasswordHash as string,",
+				"          PasswordSalt as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source5",
 				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
