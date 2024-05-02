@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DimCustomer1Table",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -17,6 +17,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "source2"
+				},
+				{
+					"name": "source3"
 				}
 			],
 			"sinks": [
@@ -74,6 +77,8 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source3",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
