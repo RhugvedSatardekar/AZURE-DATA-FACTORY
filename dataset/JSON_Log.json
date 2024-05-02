@@ -1,5 +1,5 @@
 {
-	"name": "Log",
+	"name": "JSON_Log",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",

@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Log",
+						"referenceName": "JSON_Log",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
