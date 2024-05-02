@@ -196,6 +196,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
+				"          ProductSK,",
 				"          ProductID,",
 				"          ProductModelID,",
 				"          ProductcategoryID = ProductCategoryID,",
