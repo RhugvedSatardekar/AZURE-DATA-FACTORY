@@ -505,7 +505,7 @@
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
 						"          ProductID,",
-						"          SalesOrderID = source1@SalesOrderID,",
+						"          SalesOrderID,",
 						"          CustomerID,",
 						"          OrderQty,",
 						"          UnitPrice,",
@@ -793,8 +793,7 @@
 									"source1": {},
 									"source2": {},
 									"sink1": {}
-								},
-								"linkedServiceParameters": {}
+								}
 							},
 							"staging": {
 								"linkedService": {
