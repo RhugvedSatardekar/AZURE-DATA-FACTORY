@@ -150,7 +150,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 keyGenerate(output({undefined} as long),",
+				"select1 keyGenerate(output(ProductSK as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
 				"source1 sink(allowSchemaDrift: true,",
