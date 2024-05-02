@@ -176,7 +176,9 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
-				"          ProductID",
+				"          ProductID,",
+				"          ProductModelID = source2@ProductModelID,",
+				"          ProductcategoryID = source2@ProductCategoryID",
 				"     )) ~> sink2"
 			]
 		}
