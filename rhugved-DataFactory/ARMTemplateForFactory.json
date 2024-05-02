@@ -2163,6 +2163,9 @@
 						},
 						{
 							"name": "join2"
+						},
+						{
+							"name": "select1"
 						}
 					],
 					"scriptLines": [
@@ -2242,6 +2245,16 @@
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join2",
+						"join2 select(mapColumn(",
+						"          ProductID,",
+						"          Name = source2@Name,",
+						"          ProductModelID = source3@ProductModelID,",
+						"          ProductModelName = source3@Name,",
+						"          ProductCategoryID = source4@ProductCategoryID,",
+						"          ProductCategoryName = source4@Name",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
 						"source1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -2263,7 +2276,7 @@
 						"          CompanyName,",
 						"          SalesPerson",
 						"     )) ~> sink1",
-						"join2 sink(allowSchemaDrift: true,",
+						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
 						"          ProductID as integer,",
@@ -2285,11 +2298,11 @@
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
 						"          ProductID,",
-						"          ProductModelID = source3@ProductModelID,",
-						"          ProductcategoryID = source4@ProductCategoryID,",
-						"          ProductName = source2@Name,",
-						"          ProductModelName = source3@Name,",
-						"          ProductCategoryName = source4@Name",
+						"          ProductModelID,",
+						"          ProductcategoryID = ProductCategoryID,",
+						"          ProductName = Name,",
+						"          ProductModelName,",
+						"          ProductCategoryName",
 						"     )) ~> sink2"
 					]
 				}
