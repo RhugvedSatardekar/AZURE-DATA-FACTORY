@@ -403,7 +403,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "AzureSynapseAnalyticsTable1",
+								"referenceName": "DataFlowFactSales",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -412,6 +412,12 @@
 					"transformations": [
 						{
 							"name": "join1"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "derivedColumn1"
 						}
 					],
 					"scriptLines": [
@@ -463,7 +469,19 @@
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join1",
-						"join1 sink(allowSchemaDrift: true,",
+						"join1 select(mapColumn(",
+						"          SalesOrderID = source1@SalesOrderID,",
+						"          OrderQty,",
+						"          ProductID,",
+						"          UnitPrice,",
+						"          OrderDate,",
+						"          CustomerID,",
+						"          TaxAmt",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 derive(TotalAmount = OrderQty*UnitPrice) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
 						"          ProductID as integer,",
@@ -472,7 +490,8 @@
 						"          OrderQty as integer,",
 						"          UnitPrice as decimal(19,4),",
 						"          OrderDate as timestamp,",
-						"          TaxAmt as decimal(19,4)",
+						"          TaxAmt as decimal(19,4),",
+						"          TotalAmount as decimal(18,0)",
 						"     ),",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -491,7 +510,8 @@
 						"          OrderQty,",
 						"          UnitPrice,",
 						"          OrderDate,",
-						"          TaxAmt",
+						"          TaxAmt,",
+						"          TotalAmount",
 						"     )) ~> sink1"
 					]
 				}
@@ -538,7 +558,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "AzureSynapseAnalyticsTable2",
+								"referenceName": "DataFlowDimCustomer",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -773,7 +793,8 @@
 									"source1": {},
 									"source2": {},
 									"sink1": {}
-								}
+								},
+								"linkedServiceParameters": {}
 							},
 							"staging": {
 								"linkedService": {
