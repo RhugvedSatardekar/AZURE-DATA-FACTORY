@@ -689,6 +689,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/JSON_Log')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "json"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ProductCategoryTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1165,76 +1188,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/logdata_parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Log.parquet",
-						"fileSystem": "parquet"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "Id",
-						"type": "UTF8"
-					},
-					{
-						"name": "Correlationid",
-						"type": "UTF8"
-					},
-					{
-						"name": "Operationname",
-						"type": "UTF8"
-					},
-					{
-						"name": "Status",
-						"type": "UTF8"
-					},
-					{
-						"name": "Eventcategory",
-						"type": "UTF8"
-					},
-					{
-						"name": "Level",
-						"type": "UTF8"
-					},
-					{
-						"name": "Time",
-						"type": "INT96"
-					},
-					{
-						"name": "Subscription",
-						"type": "UTF8"
-					},
-					{
-						"name": "Eventinitiatedby",
-						"type": "UTF8"
-					},
-					{
-						"name": "Resourcetype",
-						"type": "UTF8"
-					},
-					{
-						"name": "Resourcegroup",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		}
 	]
