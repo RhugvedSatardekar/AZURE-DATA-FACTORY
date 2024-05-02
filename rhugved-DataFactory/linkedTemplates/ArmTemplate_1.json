@@ -937,6 +937,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "source5"
+						},
+						{
+							"dataset": {
+								"referenceName": "DimProcuctTable",
+								"type": "DatasetReference"
+							},
+							"name": "source6"
 						}
 					],
 					"sinks": [
@@ -979,6 +986,9 @@
 						},
 						{
 							"name": "derivedColumn1"
+						},
+						{
+							"name": "exists1"
 						}
 					],
 					"scriptLines": [
@@ -1055,7 +1065,30 @@
 						"     query: 'SELECT MAX(CustomerSK) as CustomerSK FROM [dbo].[DimCustomer]',",
 						"     format: 'query',",
 						"     staged: true) ~> source5",
-						"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
+						"source(output(",
+						"          ProductID as integer,",
+						"          Name as string,",
+						"          ProductNumber as string,",
+						"          Color as string,",
+						"          StandardCost as decimal(19,4),",
+						"          ListPrice as decimal(19,4),",
+						"          Size as string,",
+						"          Weight as decimal(8,2),",
+						"          ProductCategoryID as integer,",
+						"          ProductModelID as integer,",
+						"          SellStartDate as timestamp,",
+						"          SellEndDate as timestamp,",
+						"          DiscontinuedDate as timestamp,",
+						"          ThumbNailPhoto as binary,",
+						"          ThumbnailPhotoFileName as string,",
+						"          rowguid as string,",
+						"          ModifiedDate as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> source6",
+						"exists1, source3 join(source2@ProductModelID == source3@ProductModelID,",
 						"     joinType:'left',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
@@ -1089,6 +1122,9 @@
 						"     startAt: 1L,",
 						"     stepValue: 1L) ~> surrogateKey2",
 						"surrogateKey2 derive(CustomerSK = CustomerSK+ sink3#outputs()[1].CustomerSK) ~> derivedColumn1",
+						"source2, source6 exists(source2@ProductID == source6@ProductID,",
+						"     negate:true,",
+						"     broadcast: 'auto')~> exists1",
 						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -1186,6 +1222,7 @@
 									"source3": {},
 									"source4": {},
 									"source5": {},
+									"source6": {},
 									"sink1": {},
 									"sink2": {},
 									"sink3": {}
