@@ -77,6 +77,9 @@
 				},
 				{
 					"name": "surrogateKey2"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -186,7 +189,8 @@
 				"select2 keyGenerate(output(CustomerSK as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey2",
-				"surrogateKey2 sink(allowSchemaDrift: true,",
+				"surrogateKey2 derive() ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          CustomerSK as integer,",
