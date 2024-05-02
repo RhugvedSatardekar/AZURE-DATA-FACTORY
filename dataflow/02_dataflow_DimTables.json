@@ -66,8 +66,7 @@
 					"name": "select2"
 				},
 				{
-					"name": "surrogateKey2",
-					"description": "Specify colu"
+					"name": "surrogateKey2"
 				}
 			],
 			"scriptLines": [
