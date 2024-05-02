@@ -72,6 +72,7 @@
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          CustomerID,",
+				"          CustomerName = customername,",
 				"          Registered,",
 				"          Courses = courses,",
 				"          Mobile,",
