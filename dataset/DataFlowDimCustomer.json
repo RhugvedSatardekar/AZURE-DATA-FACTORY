@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable2",
+	"name": "DataFlowDimCustomer",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics1",

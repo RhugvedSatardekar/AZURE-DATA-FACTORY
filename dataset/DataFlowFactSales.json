@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable1",
+	"name": "DataFlowFactSales",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics1",
@@ -45,6 +45,12 @@
 				"type": "money",
 				"precision": 19,
 				"scale": 4
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
 			}
 		],
 		"typeProperties": {

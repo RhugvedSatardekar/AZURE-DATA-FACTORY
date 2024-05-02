@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSynapseAnalyticsTable1",
+						"referenceName": "DataFlowFactSales",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -109,7 +109,8 @@
 				"          OrderQty as integer,",
 				"          UnitPrice as decimal(19,4),",
 				"          OrderDate as timestamp,",
-				"          TaxAmt as decimal(19,4)",
+				"          TaxAmt as decimal(19,4),",
+				"          TotalAmount as decimal(18,0)",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
