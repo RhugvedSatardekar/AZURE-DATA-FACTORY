@@ -19,7 +19,14 @@
 					"name": "source2"
 				},
 				{
+					"dataset": {
+						"referenceName": "ProductModelTable",
+						"type": "DatasetReference"
+					},
 					"name": "source3"
+				},
+				{
+					"name": "source4"
 				}
 			],
 			"sinks": [
@@ -77,8 +84,19 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
+				"source(output(",
+				"          ProductModelID as integer,",
+				"          Name as string,",
+				"          CatalogDescription as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source3",
+				"     validateSchema: false) ~> source4",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
