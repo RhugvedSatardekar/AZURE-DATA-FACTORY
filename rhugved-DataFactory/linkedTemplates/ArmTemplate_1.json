@@ -565,7 +565,7 @@
 						},
 						{
 							"dataset": {
-								"referenceName": "AzureSynapseAnalyticsTable3",
+								"referenceName": "DimProductTable",
 								"type": "DatasetReference"
 							},
 							"name": "sink2"
@@ -580,6 +580,9 @@
 						},
 						{
 							"name": "select1"
+						},
+						{
+							"name": "surrogateKey1"
 						}
 					],
 					"scriptLines": [
@@ -669,6 +672,9 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 keyGenerate(output(ProductSK as long),",
+						"     startAt: 1L,",
+						"     stepValue: 1L) ~> surrogateKey1",
 						"source1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -690,9 +696,10 @@
 						"          CompanyName,",
 						"          SalesPerson",
 						"     )) ~> sink1",
-						"select1 sink(allowSchemaDrift: true,",
+						"surrogateKey1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
+						"          ProductSK as integer,",
 						"          ProductID as integer,",
 						"          ProductModelID as integer,",
 						"          ProductcategoryID as integer,",
@@ -711,6 +718,7 @@
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
+						"          ProductSK,",
 						"          ProductID,",
 						"          ProductModelID,",
 						"          ProductcategoryID = ProductCategoryID,",

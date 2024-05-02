@@ -966,7 +966,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalyticsTable3')]",
+			"name": "[concat(parameters('factoryName'), '/DimProductTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -977,6 +977,11 @@
 				"annotations": [],
 				"type": "AzureSqlDWTable",
 				"schema": [
+					{
+						"name": "ProductSK",
+						"type": "int",
+						"precision": 10
+					},
 					{
 						"name": "ProductID",
 						"type": "int",
@@ -2151,7 +2156,7 @@
 						},
 						{
 							"dataset": {
-								"referenceName": "AzureSynapseAnalyticsTable3",
+								"referenceName": "DimProductTable",
 								"type": "DatasetReference"
 							},
 							"name": "sink2"
@@ -2166,6 +2171,9 @@
 						},
 						{
 							"name": "select1"
+						},
+						{
+							"name": "surrogateKey1"
 						}
 					],
 					"scriptLines": [
@@ -2255,6 +2263,9 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 keyGenerate(output(ProductSK as long),",
+						"     startAt: 1L,",
+						"     stepValue: 1L) ~> surrogateKey1",
 						"source1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -2276,9 +2287,10 @@
 						"          CompanyName,",
 						"          SalesPerson",
 						"     )) ~> sink1",
-						"select1 sink(allowSchemaDrift: true,",
+						"surrogateKey1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
+						"          ProductSK as integer,",
 						"          ProductID as integer,",
 						"          ProductModelID as integer,",
 						"          ProductcategoryID as integer,",
@@ -2297,6 +2309,7 @@
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
+						"          ProductSK,",
 						"          ProductID,",
 						"          ProductModelID,",
 						"          ProductcategoryID = ProductCategoryID,",
@@ -2313,7 +2326,7 @@
 				"[concat(variables('factoryId'), '/datasets/ProductModelTable')]",
 				"[concat(variables('factoryId'), '/datasets/ProductCategoryTable')]",
 				"[concat(variables('factoryId'), '/datasets/DataFlowDimCustomer')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSynapseAnalyticsTable3')]"
+				"[concat(variables('factoryId'), '/datasets/DimProductTable')]"
 			]
 		}
 	]
