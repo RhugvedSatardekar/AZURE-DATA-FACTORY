@@ -223,7 +223,7 @@
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey2",
 				"surrogateKey2 derive(CustomerSK = CustomerSK+ sink3#outputs()[1].CustomerSK) ~> derivedColumn1",
-				"source2, source6 exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"source2, source6 exists(source2@ProductID == source6@ProductID,",
 				"     negate:true,",
 				"     broadcast: 'auto')~> exists1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
