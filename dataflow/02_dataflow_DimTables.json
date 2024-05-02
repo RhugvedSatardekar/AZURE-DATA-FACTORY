@@ -164,7 +164,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     query: 'SELECT MAX([CustomerSK]) as CustomerSK FROM [dbo].[DimCustomer]',",
+				"     query: 'SELECT MAX(CustomerSK) as CustomerSK FROM [dbo].[DimCustomer]',",
 				"     format: 'query') ~> source5",
 				"source2, source3 join(source2@ProductModelID == source3@ProductModelID,",
 				"     joinType:'left',",
