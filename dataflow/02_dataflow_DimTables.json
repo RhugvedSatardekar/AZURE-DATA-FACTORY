@@ -189,7 +189,7 @@
 				"select2 keyGenerate(output(CustomerSK as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey2",
-				"surrogateKey2 derive() ~> derivedColumn1",
+				"surrogateKey2 derive(CustomerSK = ERROR_FUNCTION('')) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
