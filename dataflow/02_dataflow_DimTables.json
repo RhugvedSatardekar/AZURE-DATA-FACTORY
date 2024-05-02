@@ -40,6 +40,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
+				},
+				{
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -122,7 +125,7 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"join1, source4 join(source2@ProductCategoryID == ERROR_FUNCTION(''),",
+				"join1, source4 join(source2@ProductCategoryID == source4@ProductCategoryID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -146,7 +149,11 @@
 				"          CustomerID,",
 				"          CompanyName,",
 				"          SalesPerson",
-				"     )) ~> sink1"
+				"     )) ~> sink1",
+				"join2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
