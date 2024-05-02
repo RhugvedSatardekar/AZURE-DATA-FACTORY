@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DimCustomer1Table",
+						"referenceName": "CustomerCSV",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -71,8 +71,8 @@
 			],
 			"scriptLines": [
 				"source(output(",
-				"          CustomerID as integer,",
-				"          NameStyle as boolean,",
+				"          CustomerID as string,",
+				"          NameStyle as string,",
 				"          Title as string,",
 				"          FirstName as string,",
 				"          MiddleName as string,",
@@ -84,13 +84,11 @@
 				"          Phone as string,",
 				"          PasswordHash as string,",
 				"          PasswordSalt as string,",
-				"          rowguid as string,",
-				"          ModifiedDate as timestamp",
+				"          rowguid as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source1",
+				"     ignoreNoFilesFound: false) ~> source1",
 				"source(output(",
 				"          ProductID as integer,",
 				"          Name as string,",
