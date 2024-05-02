@@ -1,0 +1,6 @@
+{
+	"name": "rhugved-Virtual-Machine-Runtime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
