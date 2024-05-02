@@ -1708,7 +1708,8 @@
 						"          customerid as integer,",
 						"          customername as string,",
 						"          registered as boolean,",
-						"          courses as string[]",
+						"          courses as string[],",
+						"          details as (mobile as string, city as string)",
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
@@ -1716,10 +1717,12 @@
 						"     documentForm: 'arrayOfDocuments') ~> source1",
 						"source1 foldDown(unroll(courses, courses),",
 						"     mapColumn(",
-						"          customerid,",
+						"          courses = courses,",
+						"          CustomerID = customerid,",
 						"          customername,",
-						"          registered,",
-						"          courses",
+						"          Registered = registered,",
+						"          Mobile = details.mobile,",
+						"          City = details.city",
 						"     ),",
 						"     skipDuplicateMapInputs: false,",
 						"     skipDuplicateMapOutputs: false) ~> flatten1",
@@ -1729,7 +1732,9 @@
 						"          CustomerID as integer,",
 						"          CustomerName as string,",
 						"          Registered as boolean,",
-						"          Courses as string",
+						"          Courses as string,",
+						"          Mobile as string,",
+						"          City as string",
 						"     ),",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -1742,10 +1747,12 @@
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
-						"          CustomerID = customerid,",
+						"          CustomerID,",
 						"          CustomerName = customername,",
-						"          Registered = registered,",
-						"          Courses = courses",
+						"          Registered,",
+						"          Courses = courses,",
+						"          Mobile,",
+						"          City",
 						"     )) ~> sink1"
 					]
 				}
@@ -2138,7 +2145,8 @@
 								"datasetParameters": {
 									"source1": {},
 									"sink1": {}
-								}
+								},
+								"linkedServiceParameters": {}
 							},
 							"staging": {
 								"linkedService": {

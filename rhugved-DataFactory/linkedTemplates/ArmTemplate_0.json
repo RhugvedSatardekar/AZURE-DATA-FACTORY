@@ -172,6 +172,14 @@
 					{
 						"name": "Courses",
 						"type": "varchar"
+					},
+					{
+						"name": "Mobile",
+						"type": "varchar"
+					},
+					{
+						"name": "City",
+						"type": "varchar"
 					}
 				],
 				"typeProperties": {
@@ -329,7 +337,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "customer.json",
+						"fileName": "customer (1).json",
 						"folderPath": "Customers",
 						"fileSystem": "json"
 					}
@@ -350,6 +358,17 @@
 							"type": "array",
 							"items": {
 								"type": "string"
+							}
+						},
+						"details": {
+							"type": "object",
+							"properties": {
+								"mobile": {
+									"type": "string"
+								},
+								"city": {
+									"type": "string"
+								}
 							}
 						}
 					}
