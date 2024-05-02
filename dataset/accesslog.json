@@ -13,13 +13,40 @@
 				"fileName": "access.log",
 				"fileSystem": "ngnix"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": {
+				"value": " ",
+				"type": "Expression"
+			},
 			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
 			{
 				"type": "String"
 			},
