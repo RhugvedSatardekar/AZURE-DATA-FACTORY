@@ -177,6 +177,7 @@
 				"surrogateKey1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
+				"          ProductSK as integer,",
 				"          ProductID as integer,",
 				"          ProductModelID as integer,",
 				"          ProductcategoryID as integer,",
