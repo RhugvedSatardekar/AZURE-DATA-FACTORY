@@ -1,0 +1,17 @@
+{
+	"name": "rhugved_vm_server",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "D:\\nginx-1.26.0\\logs",
+			"userId": "rhugved",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjMjEyZWI3Ny0wZWE2LTRlZjMtODkyZS0wYjgwNzZkNzBhYmIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "rhugved-Virtual-Machine-Runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
