@@ -57,11 +57,21 @@
 							"type": "JsonReadSettings"
 						}
 					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "JSON_Log",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "logdata_JSON",
 						"type": "DatasetReference"
 					}
 				]
