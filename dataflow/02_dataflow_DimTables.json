@@ -13,7 +13,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable2",
+						"referenceName": "DimProcuctTable",
 						"type": "DatasetReference"
 					},
 					"name": "source2"

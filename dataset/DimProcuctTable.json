@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable2",
+	"name": "DimProcuctTable",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
