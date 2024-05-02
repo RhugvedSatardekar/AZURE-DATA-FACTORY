@@ -178,7 +178,8 @@
 				"     mapColumn(",
 				"          ProductID,",
 				"          ProductModelID = source2@ProductModelID,",
-				"          ProductcategoryID = source2@ProductCategoryID",
+				"          ProductcategoryID = source2@ProductCategoryID,",
+				"          ProductName = source2@Name",
 				"     )) ~> sink2"
 			]
 		}
