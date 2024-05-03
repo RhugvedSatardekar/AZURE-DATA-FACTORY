@@ -52,7 +52,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "CompanyName",
-					"value": ""
+					"value": {
+						"value": "@activity('Lookup-Stored-Procedure').output.firstRow.CompanyName",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -70,11 +73,18 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "SalesPerson",
+					"value": ""
+				}
 			}
 		],
 		"variables": {
 			"CompanyName": {
+				"type": "String"
+			},
+			"SalesPerson": {
 				"type": "String"
 			}
 		},
