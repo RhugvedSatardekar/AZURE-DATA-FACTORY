@@ -79,6 +79,7 @@
 				"          Status,",
 				"          Eventcategory,",
 				"          Level,",
+				"          Time,",
 				"          Subscription,",
 				"          Eventinitiatedby,",
 				"          Resourcetype,",
