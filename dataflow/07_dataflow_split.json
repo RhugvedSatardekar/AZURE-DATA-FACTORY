@@ -47,7 +47,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> source1",
-				"source1 split({Resourcegroup} == 'app-grp',",
+				"source1 split({Resourcegroup} == \"app-grp\",",
 				"     disjoint: false) ~> split1@(appgrpstream, otherresourcegroups)",
 				"split1@appgrpstream sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
