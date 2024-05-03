@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "Lookup",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -45,7 +45,7 @@
 				"userProperties": []
 			},
 			{
-				"name": "Set variable2",
+				"name": "SalesPerson",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
