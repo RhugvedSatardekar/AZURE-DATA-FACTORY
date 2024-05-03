@@ -18,7 +18,8 @@
 					"name": "select1"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "derivedColumn1",
+					"description": "Derive Time Column"
 				}
 			],
 			"scriptLines": [
