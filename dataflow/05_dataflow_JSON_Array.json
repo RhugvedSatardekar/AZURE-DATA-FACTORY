@@ -10,9 +10,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
-				},
-				{
-					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -42,11 +39,9 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'arrayOfDocuments') ~> source1",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source2",
 				"source1 foldDown(unroll(courses, courses),",
 				"     mapColumn(",
-				"          courses = courses,",
+				"          courses,",
 				"          CustomerID = customerid,",
 				"          customername,",
 				"          Registered = registered,",
