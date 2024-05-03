@@ -92,7 +92,13 @@
 							"inputs": [
 								{
 									"referenceName": "DimCustCSVCopyData",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
