@@ -49,7 +49,11 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CompanyName",
+					"value": ""
+				}
 			},
 			{
 				"name": "SalesPerson",
@@ -69,6 +73,11 @@
 				"userProperties": []
 			}
 		],
+		"variables": {
+			"CompanyName": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
