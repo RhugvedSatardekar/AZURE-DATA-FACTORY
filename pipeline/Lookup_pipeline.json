@@ -18,6 +18,12 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderStoredProcedureName": "[dbo].[GetCustomerDetails]",
+						"storedProcedureParameters": {
+							"CustomerID": {
+								"type": "Int32",
+								"value": "277"
+							}
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
