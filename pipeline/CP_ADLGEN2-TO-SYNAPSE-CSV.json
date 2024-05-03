@@ -86,9 +86,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Event category",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Eventcategory",
+									"type": "varchar"
 								}
 							},
 							{
@@ -146,9 +145,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Resource type",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Resourcetype",
+									"type": "varchar"
 								}
 							},
 							{
