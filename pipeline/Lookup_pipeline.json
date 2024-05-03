@@ -76,7 +76,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "SalesPerson",
-					"value": ""
+					"value": {
+						"value": "@activity('Lookup-Stored-Procedure').output.firstRow.SalesPerson",
+						"type": "Expression"
+					}
 				}
 			}
 		],
