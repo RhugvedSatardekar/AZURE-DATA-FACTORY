@@ -72,7 +72,18 @@
 				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Correlationid,",
+				"          Operationname,",
+				"          Status,",
+				"          Eventcategory,",
+				"          Level,",
+				"          Subscription,",
+				"          Eventinitiatedby,",
+				"          Resourcetype,",
+				"          Resourcegroup",
+				"     )) ~> sink1"
 			]
 		}
 	}
