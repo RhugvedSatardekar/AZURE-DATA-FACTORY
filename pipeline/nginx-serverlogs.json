@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy-serverlogs",
+				"name": "ConvertAccessLogs",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
