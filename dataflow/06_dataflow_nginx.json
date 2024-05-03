@@ -14,7 +14,8 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"name": "sink1",
+					"description": "Sink to dedicated SQL POOL table"
 				}
 			],
 			"transformations": [
