@@ -47,7 +47,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 derive() ~> derivedColumn1"
+				"select1 derive(Time_Local = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
