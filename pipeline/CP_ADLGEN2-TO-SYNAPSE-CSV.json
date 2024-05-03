@@ -181,7 +181,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SYNAPSE_D_SQL_POOL_LOGDATA_CSV",
+						"referenceName": "lagdata_parquet_DSQL_POOL",
 						"type": "DatasetReference"
 					}
 				]
