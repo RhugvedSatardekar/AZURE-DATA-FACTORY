@@ -13,7 +13,12 @@
 					"description": "Add source dataset from log_parquet"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1",
+					"description": "Add sink dataset to D-SQL POOL"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
@@ -32,7 +37,11 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> source1"
+				"     format: 'parquet') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
