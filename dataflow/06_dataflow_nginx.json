@@ -38,8 +38,8 @@
 				"          Remote_addr = Column_1,",
 				"          Time_local = Column_4,",
 				"          Request = Column_6,",
-				"          Column_7Status = Column_7,",
-				"          Column_8",
+				"          Status = Column_7,",
+				"          Bytes = Column_8",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1"
