@@ -54,7 +54,6 @@
 				"select1 derive(Time_Local = substring(Time_local, 2, length(Time_local)-1)) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          Remote_addr,",
-				"          Time_local = select1@Time_local,",
 				"          Request,",
 				"          Status,",
 				"          Bytes,",
