@@ -15,11 +15,20 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "lagdata_parquet_DSQL_POOL",
+						"type": "DatasetReference"
+					},
 					"name": "sink1",
 					"description": "Add sink dataset to D-SQL POOL"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "split1",
+					"description": "Split Resource Group"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Id as string,",
@@ -38,10 +47,32 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 split(ERROR_FUNCTION(''),",
+				"     disjoint: false) ~> split1@(appgrpstream, other)",
+				"split1@appgrpstream sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          Correlationid as string,",
+				"          Operationname as string,",
+				"          Status as string,",
+				"          Eventcategory as string,",
+				"          Level as string,",
+				"          Time as string,",
+				"          Subscription as string,",
+				"          Eventinitiatedby as string,",
+				"          Resourcetype as string,",
+				"          Resourcegroup as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
