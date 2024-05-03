@@ -853,7 +853,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Lookup1",
+						"name": "Lookup-Stored-Procedure",
 						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
@@ -881,12 +881,69 @@
 								"referenceName": "DimCustomerPoolDB",
 								"type": "DatasetReference",
 								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "CompanyName",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Lookup-Stored-Procedure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "CompanyName",
+							"value": {
+								"value": "@activity('Lookup-Stored-Procedure').output.firstRow.CompanyName",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "SalesPerson",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Lookup-Stored-Procedure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "SalesPerson",
+							"value": {
+								"value": "@activity('Lookup-Stored-Procedure').output.firstRow.SalesPerson",
+								"type": "Expression"
 							}
 						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"CompanyName": {
+						"type": "String"
+					},
+					"SalesPerson": {
+						"type": "String"
+					}
 				},
 				"annotations": []
 			},
