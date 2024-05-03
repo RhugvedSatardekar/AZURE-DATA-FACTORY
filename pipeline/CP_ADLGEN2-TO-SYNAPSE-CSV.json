@@ -52,9 +52,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Correlation id",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Correlationid",
+									"type": "varchar"
 								}
 							},
 							{
@@ -64,9 +63,8 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Operation name",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Operationname",
+									"type": "varchar"
 								}
 							},
 							{

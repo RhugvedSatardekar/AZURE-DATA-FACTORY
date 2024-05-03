@@ -57,7 +57,7 @@
 				"          Status as string,",
 				"          Eventcategory as string,",
 				"          Level as string,",
-				"          Time as string,",
+				"          Time as timestamp,",
 				"          Subscription as string,",
 				"          Eventinitiatedby as string,",
 				"          Resourcetype as string,",
