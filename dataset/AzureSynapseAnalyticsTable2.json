@@ -1,0 +1,39 @@
+{
+	"name": "AzureSynapseAnalyticsTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "Remote_addr",
+				"type": "varchar"
+			},
+			{
+				"name": "Time_local",
+				"type": "varchar"
+			},
+			{
+				"name": "Request",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Bytes",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Serverlogs"
+		}
+	}
+}

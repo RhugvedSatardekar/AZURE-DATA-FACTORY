@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable2",
+						"type": "DatasetReference"
+					},
 					"name": "sink1",
 					"description": "Sink to dedicated SQL POOL table"
 				}
@@ -68,8 +72,23 @@
 				"     skipDuplicateMapOutputs: true) ~> RemoveColumns1",
 				"RemoveColumns1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          Remote_addr as string,",
+				"          Time_local as string,",
+				"          Request as string,",
+				"          Status as integer,",
+				"          Bytes as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
