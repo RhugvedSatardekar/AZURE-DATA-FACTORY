@@ -62,8 +62,19 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"sink": {
+									"type": "SqlDWSink",
+									"writeBehavior": "Insert",
+									"sqlWriterUseTableLock": false
+								},
 								"enableStaging": false
-							}
+							},
+							"outputs": [
+								{
+									"referenceName": "DimCustomerPoolDB",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
