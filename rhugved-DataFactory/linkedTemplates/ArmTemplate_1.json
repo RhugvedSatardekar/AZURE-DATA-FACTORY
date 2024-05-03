@@ -1243,7 +1243,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "SYNAPSE_D_SQL_POOL_LOGDATA_CSV",
+								"referenceName": "lagdata_parquet_DSQL_POOL",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1257,7 +1257,7 @@
 				"lastPublishTime": "2024-04-30T17:50:38Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SYNAPSE_D_SQL_POOL_LOGDATA_CSV')]"
+				"[concat(variables('factoryId'), '/datasets/lagdata_parquet_DSQL_POOL')]"
 			]
 		},
 		{
