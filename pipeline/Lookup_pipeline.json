@@ -30,7 +30,8 @@
 					"dataset": {
 						"referenceName": "DimCustomerPoolDB",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
