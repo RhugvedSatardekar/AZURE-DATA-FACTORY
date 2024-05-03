@@ -15,7 +15,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://rhugvedadlgen2.blob.core.windows.net/csv/Log.csv"
+					"method": "GET",
+					"url": "https://rhugvedadlgen2.blob.core.windows.net/csv/Customer/Customer01.csv"
 				}
 			}
 		],
