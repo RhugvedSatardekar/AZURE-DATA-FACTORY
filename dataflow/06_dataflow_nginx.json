@@ -88,7 +88,14 @@
 				"     allowCopyCommand: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Remote_addr,",
+				"          Time_local = Time_Local,",
+				"          Request,",
+				"          Status,",
+				"          Bytes",
+				"     )) ~> sink1"
 			]
 		}
 	}
