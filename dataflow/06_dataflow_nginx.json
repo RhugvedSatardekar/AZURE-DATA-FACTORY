@@ -13,11 +13,15 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
-				"          {127.0.0.1 - - [02/May/2024:18:20:17 +0000] \"GET / HTTP/1.1\" 200 615 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML} as string,",
-				"          { like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0\"} as string,",
+				"          Column_1 as string,",
+				"          Column_2 as string,",
 				"          Column_3 as string,",
 				"          Column_4 as string,",
 				"          Column_5 as string,",
@@ -29,7 +33,21 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          Column_1,",
+				"          Column_2,",
+				"          Column_3,",
+				"          Column_4,",
+				"          Column_5,",
+				"          Column_6,",
+				"          Column_7,",
+				"          Column_8,",
+				"          Column_9,",
+				"          Column_10",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
