@@ -478,7 +478,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Correlation id",
+											"name": "Correlationid",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -490,7 +490,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Operation name",
+											"name": "Operationname",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -514,7 +514,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Event category",
+											"name": "Eventcategory",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -562,7 +562,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Event initiated by",
+											"name": "Eventinitiatedby",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -574,7 +574,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Resource type",
+											"name": "Resourcetype",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -586,7 +586,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Resource group",
+											"name": "Resourcegroup",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1208,6 +1208,59 @@
 				"[concat(variables('factoryId'), '/dataflows/04_dataflow_JSON')]",
 				"[concat(variables('factoryId'), '/datasets/JSON_Log')]",
 				"[concat(variables('factoryId'), '/datasets/logdata_JSON')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/conditional-split-pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ResourceGrp-split",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "07_dataflow_split",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "AzureDataLakeStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "staging"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/07_dataflow_split')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
 		{
@@ -2669,7 +2722,9 @@
 					},
 					{
 						"name": "Time",
-						"type": "varchar"
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
 					},
 					{
 						"name": "Subscription",
@@ -3846,7 +3901,7 @@
 						"          Status as string,",
 						"          Eventcategory as string,",
 						"          Level as string,",
-						"          Time as string,",
+						"          Time as timestamp,",
 						"          Subscription as string,",
 						"          Eventinitiatedby as string,",
 						"          Resourcetype as string,",
@@ -3880,59 +3935,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/logdata_parquet')]",
 				"[concat(variables('factoryId'), '/datasets/lagdata_parquet_DSQL_POOL')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/conditional-split-pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ResourceGrp-split",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "07_dataflow_split",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
-							},
-							"staging": {
-								"linkedService": {
-									"referenceName": "AzureDataLakeStorage1",
-									"type": "LinkedServiceReference"
-								},
-								"folderPath": "staging"
-							},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/07_dataflow_split')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		}
 	]

@@ -437,7 +437,9 @@
 					},
 					{
 						"name": "Time",
-						"type": "varchar"
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
 					},
 					{
 						"name": "Subscription",
@@ -1113,7 +1115,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Correlation id",
+											"name": "Correlationid",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1125,7 +1127,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Operation name",
+											"name": "Operationname",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1149,7 +1151,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Event category",
+											"name": "Eventcategory",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1197,7 +1199,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Event initiated by",
+											"name": "Eventinitiatedby",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1209,7 +1211,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Resource type",
+											"name": "Resourcetype",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -1221,7 +1223,7 @@
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Resource group",
+											"name": "Resourcegroup",
 											"type": "String",
 											"physicalType": "varchar"
 										}
