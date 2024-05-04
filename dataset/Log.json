@@ -1,0 +1,19 @@
+{
+	"name": "Log",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "parquet1"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
