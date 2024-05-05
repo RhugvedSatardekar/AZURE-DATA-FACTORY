@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          total as double,",
@@ -29,7 +33,20 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> source1"
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 select(mapColumn(",
+				"          total,",
+				"          minimum,",
+				"          maximum,",
+				"          average,",
+				"          resourceId,",
+				"          time,",
+				"          metricName,",
+				"          timeGrain,",
+				"          count",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
