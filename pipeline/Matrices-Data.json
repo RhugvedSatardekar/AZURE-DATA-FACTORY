@@ -63,7 +63,27 @@
 						"writeBehavior": "Insert",
 						"sqlWriterUseTableLock": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['average']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['time']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['metricName']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
