@@ -14,8 +14,12 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "StagingMatricOutput",
+						"type": "DatasetReference"
+					},
 					"name": "sink1",
-					"description": "Add sink dataset to Sta"
+					"description": "Add sink dataset to Staging Output Data Lake "
 				}
 			],
 			"transformations": [
@@ -48,6 +52,9 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
