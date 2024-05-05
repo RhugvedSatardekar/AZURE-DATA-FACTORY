@@ -1127,7 +1127,14 @@
 					{
 						"name": "Matrics-to-StatgingOutput",
 						"type": "ExecuteDataFlow",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "CopyDataInsignts",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -1280,6 +1287,58 @@
 								"enablePartitionDiscovery": false
 							}
 						}
+					},
+					{
+						"name": "CopyDataInsignts",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "MergeFiles"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "InsightsMatrics",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "StagingMaticDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -1291,6 +1350,8 @@
 				"[concat(variables('factoryId'), '/dataflows/09_dataflow_streaming_matric')]",
 				"[concat(variables('factoryId'), '/datasets/StagingMatricOutput')]",
 				"[concat(variables('factoryId'), '/datasets/WebMatrics')]",
+				"[concat(variables('factoryId'), '/datasets/InsightsMatrics')]",
+				"[concat(variables('factoryId'), '/datasets/StagingMaticDataset')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
@@ -3493,7 +3554,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "PT1H (1).json",
 						"fileSystem": "stagingmatrix"
 					}
 				},
@@ -5149,6 +5209,30 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/StagingMaticDataset')]",
 				"[concat(variables('factoryId'), '/datasets/StagingMatricOutput')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/InsightsMatrics')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "resourceId=/SUBSCRIPTIONS/60BB05D6-1E3E-4B99-B5E1-20AAA5DD54F3/RESOURCEGROUPS/APP-GRP/PROVIDERS/MICROSOFT.WEB/SITES/RHUGVEDWEBAPP",
+						"fileSystem": "insights-metrics-pt1m"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		}
 	]
