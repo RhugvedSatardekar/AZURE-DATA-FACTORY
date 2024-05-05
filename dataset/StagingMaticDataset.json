@@ -1,0 +1,50 @@
+{
+	"name": "StagingMaticDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "PT1H (1).json",
+				"fileSystem": "stagingmatrix"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"total": {
+					"type": "number"
+				},
+				"minimum": {
+					"type": "integer"
+				},
+				"maximum": {
+					"type": "integer"
+				},
+				"average": {
+					"type": "number"
+				},
+				"resourceId": {
+					"type": "string"
+				},
+				"time": {
+					"type": "string"
+				},
+				"metricName": {
+					"type": "string"
+				},
+				"timeGrain": {
+					"type": "string"
+				},
+				"count": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
