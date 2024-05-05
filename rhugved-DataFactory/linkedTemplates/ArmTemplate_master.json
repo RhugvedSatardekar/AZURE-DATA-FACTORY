@@ -35,10 +35,6 @@
 			"type": "string",
 			"defaultValue": "rhugved"
 		},
-		"BlobTrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/60bb05d6-1e3e-4b99-b5e1-20aaa5dd54f3/resourceGroups/DATA-GRP/providers/Microsoft.Storage/storageAccounts/rhugvedadlgen2"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -144,9 +140,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"BlobTrigger_properties_typeProperties_scope": {
-						"value": "[parameters('BlobTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
