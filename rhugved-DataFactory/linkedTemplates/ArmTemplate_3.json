@@ -183,10 +183,17 @@
 							},
 							"sink": {
 								"type": "SqlDWSink",
-								"writeBehavior": "Insert",
-								"sqlWriterUseTableLock": false
+								"allowCopyCommand": true,
+								"copyCommandSettings": {}
 							},
-							"enableStaging": false,
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureDataLakeStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "staging"
+							},
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [

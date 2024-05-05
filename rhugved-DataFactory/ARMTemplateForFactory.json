@@ -1188,10 +1188,17 @@
 							},
 							"sink": {
 								"type": "SqlDWSink",
-								"writeBehavior": "Insert",
-								"sqlWriterUseTableLock": false
+								"allowCopyCommand": true,
+								"copyCommandSettings": {}
 							},
-							"enableStaging": false,
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureDataLakeStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "staging"
+							},
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -1249,7 +1256,8 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/09_dataflow_streaming_matric')]",
 				"[concat(variables('factoryId'), '/datasets/StagingMatricOutput')]",
-				"[concat(variables('factoryId'), '/datasets/WebMatrics')]"
+				"[concat(variables('factoryId'), '/datasets/WebMatrics')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
 		{
