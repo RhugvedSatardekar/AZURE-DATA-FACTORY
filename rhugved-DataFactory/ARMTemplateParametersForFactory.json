@@ -25,6 +25,9 @@
 		},
 		"rhugved_vm_server_properties_typeProperties_userId": {
 			"value": "rhugved"
+		},
+		"BlobTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/60bb05d6-1e3e-4b99-b5e1-20aaa5dd54f3/resourceGroups/DATA-GRP/providers/Microsoft.Storage/storageAccounts/rhugvedadlgen2"
 		}
 	}
 }
