@@ -56,7 +56,12 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          average,",
+				"          time,",
+				"          metricName",
+				"     )) ~> sink1"
 			]
 		}
 	}
