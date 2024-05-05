@@ -1,0 +1,19 @@
+{
+	"name": "InsightsMatrics",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "resourceId=/SUBSCRIPTIONS/60BB05D6-1E3E-4B99-B5E1-20AAA5DD54F3/RESOURCEGROUPS/APP-GRP/PROVIDERS/MICROSOFT.WEB/SITES/RHUGVEDWEBAPP/y=2024",
+				"fileSystem": "insights-metrics-pt1m"
+			}
+		},
+		"schema": {}
+	}
+}
