@@ -17,7 +17,8 @@
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/60bb05d6-1e3e-4b99-b5e1-20aaa5dd54f3/resourceGroups/DATA-GRP/providers/Microsoft.Storage/storageAccounts/rhugvedadlgen2",
 			"events": [
-				"Microsoft.Storage.BlobCreated"
+				"Microsoft.Storage.BlobCreated",
+				"Microsoft.Storage.BlobDeleted"
 			]
 		}
 	}
