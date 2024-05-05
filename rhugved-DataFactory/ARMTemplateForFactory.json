@@ -1246,6 +1246,40 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "DeletingStagingMatricsFile",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "Copy To Sink",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "StagingMatricOutput",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"enableLogging": false,
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"wildcardFileName": "*.*",
+								"enablePartitionDiscovery": false
+							}
+						}
 					}
 				],
 				"policy": {
@@ -5088,6 +5122,7 @@
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
+						"     purgeFiles: true,",
 						"     documentForm: 'documentPerLine') ~> source1",
 						"source1 select(mapColumn(",
 						"          average,",

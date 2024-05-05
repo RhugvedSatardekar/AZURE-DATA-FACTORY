@@ -2299,6 +2299,7 @@
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
+						"     purgeFiles: true,",
 						"     documentForm: 'documentPerLine') ~> source1",
 						"source1 select(mapColumn(",
 						"          average,",
