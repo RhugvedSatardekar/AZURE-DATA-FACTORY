@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "rhugved-DataFactory"
-		},
-		"rhugved_vm_server_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'rhugved_vm_server'"
-		},
-		"rhugved_vm_server_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "D:\\nginx-1.26.0\\logs"
-		},
-		"rhugved_vm_server_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "rhugved"
 		}
 	},
 	"variables": {
@@ -652,6 +640,80 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/StagingMaticDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "PT1H (1).json",
+						"fileSystem": "stagingmatrix"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"total": {
+							"type": "number"
+						},
+						"minimum": {
+							"type": "integer"
+						},
+						"maximum": {
+							"type": "integer"
+						},
+						"average": {
+							"type": "number"
+						},
+						"resourceId": {
+							"type": "string"
+						},
+						"time": {
+							"type": "string"
+						},
+						"metricName": {
+							"type": "string"
+						},
+						"timeGrain": {
+							"type": "string"
+						},
+						"count": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/StagingMatricOutput')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "stagingutput"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/accesslog')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1082,81 +1144,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/rhugved_vm_server')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('rhugved_vm_server_properties_typeProperties_host')]",
-					"userId": "[parameters('rhugved_vm_server_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('rhugved_vm_server_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "rhugved-Virtual-Machine-Runtime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/StagingMaticDataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "PT1H (1).json",
-						"fileSystem": "stagingmatrix"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"total": {
-							"type": "number"
-						},
-						"minimum": {
-							"type": "integer"
-						},
-						"maximum": {
-							"type": "integer"
-						},
-						"average": {
-							"type": "number"
-						},
-						"resourceId": {
-							"type": "string"
-						},
-						"time": {
-							"type": "string"
-						},
-						"metricName": {
-							"type": "string"
-						},
-						"timeGrain": {
-							"type": "string"
-						},
-						"count": {
-							"type": "integer"
-						}
-					}
-				}
 			},
 			"dependsOn": []
 		}

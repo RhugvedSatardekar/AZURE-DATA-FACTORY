@@ -91,15 +91,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"rhugved_vm_server_password": {
-						"value": "[parameters('rhugved_vm_server_password')]"
-					},
-					"rhugved_vm_server_properties_typeProperties_host": {
-						"value": "[parameters('rhugved_vm_server_properties_typeProperties_host')]"
-					},
-					"rhugved_vm_server_properties_typeProperties_userId": {
-						"value": "[parameters('rhugved_vm_server_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -120,6 +111,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"rhugved_vm_server_password": {
+						"value": "[parameters('rhugved_vm_server_password')]"
+					},
+					"rhugved_vm_server_properties_typeProperties_host": {
+						"value": "[parameters('rhugved_vm_server_properties_typeProperties_host')]"
+					},
+					"rhugved_vm_server_properties_typeProperties_userId": {
+						"value": "[parameters('rhugved_vm_server_properties_typeProperties_userId')]"
 					}
 				}
 			},
